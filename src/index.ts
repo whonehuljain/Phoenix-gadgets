@@ -4,6 +4,9 @@ import dotenv from 'dotenv';
 import routes from './routes/router';
 import prisma from './config/prismaClient';
 import { errorHandler } from './middlewares/errorHandler';
+import cookieParser from 'cookie-parser';
+
+
 
 dotenv.config();
 
@@ -13,6 +16,7 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cookieParser());
 
 app.use('/', routes);
 

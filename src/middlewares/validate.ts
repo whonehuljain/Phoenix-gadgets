@@ -12,10 +12,10 @@ export const validate = (schema: AnyZodObject) => {
   };
 };
 
-export const validateParams = (schema: AnyZodObject) => {
+export const validateQParams = (schema: AnyZodObject) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      await schema.parseAsync(req.params);
+      await schema.parseAsync(req.query);
       next();
     } catch (error) {
       next(error);

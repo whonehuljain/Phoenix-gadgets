@@ -6,7 +6,7 @@ const authService = new AuthService();
 export class AuthController {
   async register(req: Request, res: Response, next: NextFunction) {
     try {
-      const user = await authService.register(req.body);
+      const user = await authService.register(req.body, res);
       res.status(201).json({
         success: true,
         data: user,
@@ -22,7 +22,7 @@ export class AuthController {
   async login(req: Request, res: Response, next: NextFunction) {
     try {
       const { email, password } = req.body;
-      const result = await authService.login(email, password);
+      const result = await authService.login(email, password, res);
       res.json({
         success: true,
         data: result

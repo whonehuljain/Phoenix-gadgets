@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from '../config/jwt';
 import { CustomError } from './errorHandler';
 
+
 export interface AuthRequest extends Request {
   user?: any;
 }
@@ -10,10 +11,15 @@ export interface AuthRequest extends Request {
 
 export const authenticate = (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
-    const token = req.headers.authorization?.split(' ')[1];
+    const token = req.cookies?.token;
+
+    // console.log(token);
+
     if (!token) {
+      console.log('no token found');
       throw new CustomError('Authentication required');
     }
+    // console.log(token);
 
     console.log('token found, verifying...');
 
