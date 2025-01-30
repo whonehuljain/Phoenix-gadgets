@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { auth as authRoute } from './auth';
+import { gadget as gadgetRoute } from './gadget';
 
 const router = Router();
 
@@ -10,5 +11,6 @@ router.get('/ping', (req, res) => {
   
   
 router.use('/auth', authRoute);
+router.use('/gadgets', gadgetRoute);
 
 export default router;
