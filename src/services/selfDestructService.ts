@@ -101,7 +101,7 @@ export class SelfDestructService {
 
     const updatedGadget = await prisma.gadget.update({
       where: { id: gadgetId },
-      data: { status: 'DESTROYED' }
+      data: { status: 'DESTROYED', decommissionedAt: new Date() }
     });
 
     this.confirmationCodes.delete(gadgetId);
